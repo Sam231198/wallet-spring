@@ -1,22 +1,3 @@
 spring:
   application:
     name: wallet
-  datasource:
-    url: jdbc:postgresql://db:5432/wallet
-    username: postgres
-    password: postgres
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-  # kafka:
-  #   bootstrap-servers: kafka:9092
-  #   consumer:
-  #     group-id: wallet-group
-  #     auto-offset-reset: earliest
-  #   producer:
-  #     key-serializer: org.apache.kafka.common.serialization.StringSerializer
-  #     value-serializer: org.apache.kafka.common.serialization.StringSerializer
