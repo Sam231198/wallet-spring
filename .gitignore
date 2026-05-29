@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Arquivos de configuração do Spring Boot
+src/main/resources/application.properties
+src/main/resources/application.yaml
+src/main/resources/application.yml
