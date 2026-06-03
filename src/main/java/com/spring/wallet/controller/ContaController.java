@@ -30,28 +30,28 @@ public class ContaController {
 
     }
 
-    @PutMapping("/")
-    public ContaDTO atualizarConta(@PathVariable String cpfCnpj, @RequestBody PessoaDTO pessoaDTO) {
-        return cadastroService.atualizar(pessoaDTO);
-    }
+    // @PutMapping("/")
+    // public ContaDTO atualizarConta(@PathVariable String cpfCnpj, @RequestBody PessoaDTO pessoaDTO) {
+    //     return cadastroService.atualizar(pessoaDTO);
+    // }
 
-    @DeleteMapping("/{id}")
-    public Boolean deletarConta(@PathVariable String cpfCnpj) {
-        return cadastroService.deletar(cpfCnpj);
-    }
+    // @DeleteMapping("/{id}")
+    // public Boolean deletarConta(@PathVariable String cpfCnpj) {
+    //     return cadastroService.deletar(cpfCnpj);
+    // }
 
-    @PostMapping("/depositar")
-    public ContaDTO depositar(@RequestBody ContaDTO contaDTO) {
-        return operacaoService.depositar(contaDTO.getSaldo());
-    }
+    // @PostMapping("/depositar")
+    // public ContaDTO depositar(@RequestBody ContaDTO contaDTO) {
+    //     return operacaoService.depositar(contaDTO.getSaldo());
+    // }
 
-    @PostMapping("/sacar")
-    public ContaDTO sacar(@RequestBody ContaDTO contaDTO) {
-        return operacaoService.sacar(contaDTO.getSaldo());
-    }
+    // @PostMapping("/sacar")
+    // public ContaDTO sacar(@RequestBody ContaDTO contaDTO) {
+    //     return operacaoService.sacar(contaDTO.getSaldo());
+    // }
 
-    @PostMapping("/transferir")
-    public ContaDTO transferir(@RequestBody ContaDTO contaDTO) {
-        return operacaoService.transferir(contaDTO.getChave(), contaDTO.getSaldo());
-    }
+    // @PostMapping("/transferir")
+    // public ContaDTO transferir(@RequestBody ContaDTO contaDTO) {
+    //     return operacaoService.transferir(contaDTO.getChave(), contaDTO.getSaldo());
+    // }
 }

@@ -8,11 +8,11 @@ import lombok.Getter;
 @Table(name = "conta")
 @Getter
 public class Conta {
-    private Long saldo;
+    private Double saldo;
     private String chave;
     private Pessoa pessoa;
 
-    public Conta(Long saldo, String chave, Pessoa pessoa) {
+    public Conta(Double saldo, String chave, Pessoa pessoa) {
         this.saldo = saldo;
         this.chave = chave;
         this.pessoa = pessoa;

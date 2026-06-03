@@ -1,10 +1,50 @@
 package com.spring.wallet.service;
 
+import org.springframework.stereotype.Service;
+
+import com.spring.wallet.domain.model.Conta;
+import com.spring.wallet.domain.model.Pessoa;
 import com.spring.wallet.dto.ContaDTO;
 import com.spring.wallet.dto.PessoaDTO;
+import com.spring.wallet.repository.ContaRepository;
+import com.spring.wallet.repository.PessoaRepository;
 
-public interface CadastroService {
-    ContaDTO cadastrar(PessoaDTO pessoaDTO);
-    ContaDTO atualizar(PessoaDTO pessoaDTO);
-    Boolean deletar(String cpfCnpj);
+@Service
+public class CadastroService {
+
+    private PessoaRepository pessoaRepository;
+    private ContaRepository contaRepository;
+
+    public ContaDTO cadastrar(PessoaDTO pessoaDTO){
+        Pessoa pessoa = new Pessoa(pessoaDTO.getNome(), pessoaDTO.getCpfCnpj(), pessoaDTO.getEmail());
+        pessoaRepository.save(pessoa);
+
+        Conta conta = new Conta(0.0, pessoaDTO.getCpfCnpj(), pessoa);
+        contaRepository.save(conta);
+
+        return new ContaDTO(conta.getSaldo(), conta.getChave());
+    }
+
+    ContaDTO atualizar(PessoaDTO pessoaDTO){
+        Pessoa pessoa = pessoaRepository.findPessoa(pessoaDTO.getCpfCnpj());
+        pessoaRepository.save(pessoa);
+
+        Conta conta = contaRepository.findConta(pessoaDTO.getCpfCnpj());
+        contaRepository.save(conta);
+
+        return new ContaDTO(conta.getSaldo(), conta.getChave());
+    }
+
+    Boolean deletar(String cpfCnpj){
+        Pessoa pessoa = pessoaRepository.findPessoa(cpfCnpj);
+        
+        if(pessoa != null){
+            pessoaRepository.delete(pessoa);
+            Conta conta = contaRepository.findConta(cpfCnpj);
+            contaRepository.delete(conta);
+            return true;
+        }
+
+        return false;   
+    }
 }

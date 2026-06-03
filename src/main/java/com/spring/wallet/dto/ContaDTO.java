@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public class ContaDTO {
-    private Long saldo;
+    private Double saldo;
     private String chave;
 
-    public ContaDTO(Long saldo, String chave) {
+    public ContaDTO(Double saldo, String chave) {
         this.saldo = saldo;
         this.chave = chave;
     }
