@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.wallet.dto.ContaDTO;
 import com.spring.wallet.dto.PessoaDTO;
 import com.spring.wallet.service.CadastroService;
-import com.spring.wallet.service.OperacaoService;
 
 @RestController
 @RequestMapping("/conta")
 public class ContaController {
-    OperacaoService operacaoService;
     CadastroService cadastroService;
 
-    public ContaController(OperacaoService operacaoService, CadastroService cadastroService) {
-        this.operacaoService = operacaoService;
+    public ContaController(CadastroService cadastroService) {
         this.cadastroService = cadastroService;
     }
 
@@ -39,19 +36,4 @@ public class ContaController {
     public Boolean deletarConta(@PathVariable String cpfCnpj) {
         return cadastroService.deletar(cpfCnpj);
     }
-
-    // @PostMapping("/depositar")
-    // public ContaDTO depositar(@RequestBody ContaDTO contaDTO) {
-    //     return operacaoService.depositar(contaDTO.getSaldo());
-    // }
-
-    // @PostMapping("/sacar")
-    // public ContaDTO sacar(@RequestBody ContaDTO contaDTO) {
-    //     return operacaoService.sacar(contaDTO.getSaldo());
-    // }
-
-    // @PostMapping("/transferir")
-    // public ContaDTO transferir(@RequestBody ContaDTO contaDTO) {
-    //     return operacaoService.transferir(contaDTO.getChave(), contaDTO.getSaldo());
-    // }
 }

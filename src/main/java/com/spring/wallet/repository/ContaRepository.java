@@ -8,4 +8,5 @@ import com.spring.wallet.domain.model.Conta;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
     Conta findConta(String chave);
+    Conta findByCpfCnpj(String cpfCnpj);
 }

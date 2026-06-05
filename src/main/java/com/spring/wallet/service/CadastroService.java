@@ -15,36 +15,48 @@ public class CadastroService {
     private PessoaRepository pessoaRepository;
     private ContaRepository contaRepository;
 
-    public ContaDTO cadastrar(PessoaDTO pessoaDTO){
+    public ContaDTO cadastrar(PessoaDTO pessoaDTO) {
         Pessoa pessoa = new Pessoa(pessoaDTO.getNome(), pessoaDTO.getCpfCnpj(), pessoaDTO.getEmail());
         pessoaRepository.save(pessoa);
 
-        Conta conta = new Conta(0.0, pessoaDTO.getCpfCnpj(), pessoa);
+        Conta conta = new Conta();
+        conta.setChave(null);
+        conta.setSaldo(0.0);
+        conta.setPessoa(pessoa);
+
         contaRepository.save(conta);
 
-        return new ContaDTO(conta.getSaldo(), conta.getChave());
+        ContaDTO contaDTO = new ContaDTO();
+        contaDTO.setSaldo(conta.getSaldo());
+        contaDTO.setChave(conta.getChave());
+
+        return contaDTO;
     }
 
-    public ContaDTO atualizar(PessoaDTO pessoaDTO){
+    public ContaDTO atualizar(PessoaDTO pessoaDTO) {
         Pessoa pessoa = pessoaRepository.findPessoa(pessoaDTO.getCpfCnpj());
         pessoaRepository.save(pessoa);
 
         Conta conta = contaRepository.findConta(pessoaDTO.getCpfCnpj());
         contaRepository.save(conta);
 
-        return new ContaDTO(conta.getSaldo(), conta.getChave());
+        ContaDTO contaDTO = new ContaDTO();
+        contaDTO.setSaldo(conta.getSaldo());
+        contaDTO.setChave(conta.getChave());
+
+        return contaDTO;
     }
 
-    public Boolean deletar(String cpfCnpj){
+    public Boolean deletar(String cpfCnpj) {
         Pessoa pessoa = pessoaRepository.findPessoa(cpfCnpj);
-        
-        if(pessoa != null){
+
+        if (pessoa != null) {
             pessoaRepository.delete(pessoa);
             Conta conta = contaRepository.findConta(cpfCnpj);
             contaRepository.delete(conta);
             return true;
         }
 
-        return false;   
+        return false;
     }
 }
