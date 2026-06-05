@@ -30,15 +30,15 @@ public class ContaController {
 
     }
 
-    // @PutMapping("/")
-    // public ContaDTO atualizarConta(@PathVariable String cpfCnpj, @RequestBody PessoaDTO pessoaDTO) {
-    //     return cadastroService.atualizar(pessoaDTO);
-    // }
+    @PutMapping("/")
+    public ContaDTO atualizarConta(@PathVariable String cpfCnpj, @RequestBody PessoaDTO pessoaDTO) {
+        return cadastroService.atualizar(pessoaDTO);
+    }
 
-    // @DeleteMapping("/{id}")
-    // public Boolean deletarConta(@PathVariable String cpfCnpj) {
-    //     return cadastroService.deletar(cpfCnpj);
-    // }
+    @DeleteMapping("/{cpfCnpj}")
+    public Boolean deletarConta(@PathVariable String cpfCnpj) {
+        return cadastroService.deletar(cpfCnpj);
+    }
 
     // @PostMapping("/depositar")
     // public ContaDTO depositar(@RequestBody ContaDTO contaDTO) {

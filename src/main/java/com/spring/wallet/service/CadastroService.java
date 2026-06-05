@@ -25,7 +25,7 @@ public class CadastroService {
         return new ContaDTO(conta.getSaldo(), conta.getChave());
     }
 
-    ContaDTO atualizar(PessoaDTO pessoaDTO){
+    public ContaDTO atualizar(PessoaDTO pessoaDTO){
         Pessoa pessoa = pessoaRepository.findPessoa(pessoaDTO.getCpfCnpj());
         pessoaRepository.save(pessoa);
 
@@ -35,7 +35,7 @@ public class CadastroService {
         return new ContaDTO(conta.getSaldo(), conta.getChave());
     }
 
-    Boolean deletar(String cpfCnpj){
+    public Boolean deletar(String cpfCnpj){
         Pessoa pessoa = pessoaRepository.findPessoa(cpfCnpj);
         
         if(pessoa != null){
